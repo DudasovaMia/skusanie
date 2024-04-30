@@ -12,6 +12,25 @@ function calculateScorePercentage(correct: number, total: number): number {
   return total !== 0 ? (correct / total) * 100 : 0;
 }
 
+function getTextColor(correct: number, total: number): string {
+  if (total === 0 && correct === 0) {
+    return "#5D707F";
+  } else {
+    const scorePercentage = (correct / total) * 100;
+    if (scorePercentage >= 90) {
+      return "#5D707F";
+    } else if (scorePercentage >= 75) {
+      return "#5D707F";
+    } else if (scorePercentage >= 50) {
+      return "#5D707F";
+    } else if (scorePercentage >= 35) {
+      return "#FFFFFF";
+    } else {
+      return "#FFFFFF";
+    }
+  }
+}
+
 function getBackgroundColor(correct: number, total: number): string {
   if (total === 0 && correct === 0) {
     return "#FFFFFF";
@@ -130,7 +149,14 @@ function App() {
             </div>
             <div className="w-[100%] h-fit justify-center items-center flex flex-col">
               <div className="flex flex-col justify-center items-center">
-                <h2 className="mr-4 text-lg font-bold">Meno</h2>
+                <h2
+                  className="mr-4 text-lg font-bold"
+                  style={{
+                    color: getTextColor(student.correct, student.total),
+                  }}
+                >
+                  Meno
+                </h2>
                 <div className="flex">
                   <button className="bg-transparent text-transparent border-2 border-transparent rounded-md px-3 py-1 ">
                     -
@@ -148,7 +174,12 @@ function App() {
                 </div>
               </div>
               <div>
-                <h2 className="mr-4 text-lg font-bold ">
+                <h2
+                  className="mr-4 text-lg font-bold "
+                  style={{
+                    color: getTextColor(student.correct, student.total),
+                  }}
+                >
                   Počet správnych odpovedí
                 </h2>
                 <div className="flex">
@@ -175,7 +206,14 @@ function App() {
                 </div>
               </div>
               <div>
-                <h2 className="mr-4 text-lg font-bold">Počet otázok</h2>
+                <h2
+                  className="mr-4 text-lg font-bold"
+                  style={{
+                    color: getTextColor(student.correct, student.total),
+                  }}
+                >
+                  Počet otázok
+                </h2>
                 <div className="flex">
                   <button
                     className="bg-grey text-white border-2 border-grey rounded-md px-3 py-1"
@@ -199,8 +237,20 @@ function App() {
               </div>
               {student.total > 0 && (
                 <div>
-                  <h2 className="mr-4 text-lg font-bold">Percentá</h2>
-                  <h2 className="mr-4 text-2xl font-bold">
+                  <h2
+                    className="mr-4 text-lg font-bold"
+                    style={{
+                      color: getTextColor(student.correct, student.total),
+                    }}
+                  >
+                    Percentá
+                  </h2>
+                  <h2
+                    className="mr-4 text-2xl font-bold"
+                    style={{
+                      color: getTextColor(student.correct, student.total),
+                    }}
+                  >
                     {((student.correct / student.total) * 100).toFixed(2)}
                   </h2>
                 </div>
